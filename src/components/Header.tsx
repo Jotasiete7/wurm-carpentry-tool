@@ -4,8 +4,9 @@ import { LanguageSelector } from './LanguageSelector';
 
 const Header: React.FC = () => {
     return (
-        <div className="fixed top-0 left-0 right-0 z-[100] bg-wurm-bg/80 backdrop-blur-md border-b border-wurm-border px-4 h-14 flex items-center justify-end gap-2">
+        <div className="fixed top-4 right-4 z-[100] bg-wurm-panel/90 backdrop-blur-md border border-wurm-border rounded-lg px-3 py-1.5 flex items-center justify-end gap-3 shadow-lg">
             <LanguageSelector />
+            <div className="w-px h-4 bg-wurm-border" />
             <EcosystemDropdown />
         </div>
     );
