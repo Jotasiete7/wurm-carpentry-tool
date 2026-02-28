@@ -1,7 +1,7 @@
 import { Grid3X3, Hammer, Info, Layers, RotateCcw } from 'lucide-react'
 import { useCallback, useState } from 'react'
-import { LanguageSelector } from './components/LanguageSelector'
 import { LanguageProvider, useLanguage } from './i18n/LanguageContext'
+import Header from './components/Header'
 
 type TileKey = `${number}-${number}`
 
@@ -58,16 +58,16 @@ function CarpentryTool() {
 
   const calculateOuterWalls = useCallback(() => {
     let outerWalls = 0
-    
+
     selectedTiles.forEach(key => {
       const [row, col] = key.split('-').map(Number)
-      
+
       if (!selectedTiles.has(`${row - 1}-${col}`)) outerWalls++
       if (!selectedTiles.has(`${row + 1}-${col}`)) outerWalls++
       if (!selectedTiles.has(`${row}-${col - 1}`)) outerWalls++
       if (!selectedTiles.has(`${row}-${col + 1}`)) outerWalls++
     })
-    
+
     return outerWalls
   }, [selectedTiles])
 
@@ -102,14 +102,14 @@ function CarpentryTool() {
   const effectiveCarpentry = Math.max(carpentryRequired, maxFloorRequirement)
 
   return (
-    <div 
+    <div
       className="min-h-screen bg-wurm-bg font-sans select-none"
       onMouseUp={handleMouseUp}
       onMouseLeave={handleMouseUp}
     >
-      <LanguageSelector />
-      
-      <div className="max-w-6xl mx-auto px-4 py-8">
+      <Header />
+
+      <div className="max-w-6xl mx-auto px-4 py-8 pt-20">
         {/* Header */}
         <header className="text-center mb-10">
           <div className="flex items-center justify-center gap-3 mb-2">
@@ -273,9 +273,9 @@ function CarpentryTool() {
             {/* Grid + Legend */}
             <div className="flex gap-6">
               {/* Grid */}
-              <div 
+              <div
                 className="grid gap-0.5 p-3 bg-wurm-bg rounded-lg w-fit"
-                style={{ 
+                style={{
                   gridTemplateColumns: `repeat(${gridSize}, 1fr)`,
                 }}
               >
@@ -285,7 +285,7 @@ function CarpentryTool() {
                     Array.from({ length: gridSize }, (_, col) => {
                       const key: TileKey = `${row}-${col}`
                       const isSelected = selectedTiles.has(key)
-                      
+
                       const hasTopNeighbor = selectedTiles.has(`${row - 1}-${col}`)
                       const hasBottomNeighbor = selectedTiles.has(`${row + 1}-${col}`)
                       const hasLeftNeighbor = selectedTiles.has(`${row}-${col - 1}`)
@@ -296,8 +296,8 @@ function CarpentryTool() {
                           key={key}
                           className={`
                             cursor-pointer transition-all duration-100
-                            ${isSelected 
-                              ? 'bg-wurm-success' 
+                            ${isSelected
+                              ? 'bg-wurm-success'
                               : 'bg-wurm-border hover:bg-wurm-accentDim'
                             }
                           `}
@@ -343,9 +343,9 @@ function CarpentryTool() {
         <footer className="text-center mt-12 text-wurm-muted text-sm space-y-1">
           <p>
             {t('footer').split('{link}')[0]}
-            <a 
-              href="https://www.wurmpedia.com/index.php/House" 
-              target="_blank" 
+            <a
+              href="https://www.wurmpedia.com/index.php/House"
+              target="_blank"
               rel="noopener noreferrer"
               className="text-wurm-accent hover:underline"
             >
@@ -355,9 +355,9 @@ function CarpentryTool() {
           </p>
           <p>
             {t('developedBy')}{' '}
-            <a 
-              href="https://wurm-aguild-site.pages.dev" 
-              target="_blank" 
+            <a
+              href="https://wurm-aguild-site.pages.dev"
+              target="_blank"
               rel="noopener noreferrer"
               className="text-wurm-accent hover:underline"
             >
