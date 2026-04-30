@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Network, Home, BookOpen, Pickaxe, LineChart, BookMarked, Hammer, Shield } from 'lucide-react';
+import { Network, Home, BookOpen, Pickaxe, LineChart, BookMarked, Hammer, Shield, Gavel } from 'lucide-react';
 
 const ECOSYSTEM_TOOLS = [
     {
@@ -37,6 +37,12 @@ const ECOSYSTEM_TOOLS = [
         label: 'Carpentry',
         href: 'https://wurm-carpentry-tool.pages.dev',
         icon: Hammer,
+    },
+    {
+        id: 'auction',
+        label: 'Leilões',
+        href: 'https://wurm-auction-helper.pages.dev',
+        icon: Gavel,
     },
     {
         id: 'badges',
