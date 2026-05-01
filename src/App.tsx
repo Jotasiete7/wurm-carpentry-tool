@@ -1,9 +1,9 @@
 import { Grid3X3, Hammer, Info, Layers, RotateCcw } from 'lucide-react'
 import { useCallback, useState } from 'react'
 import { LanguageProvider, useLanguage } from './i18n/LanguageContext'
-import { Header as AgHeader } from '@antigravity/layout/Header'
-import { LanguageSwitch } from '@antigravity/modules/LanguageSwitch'
-import agStyles from '@antigravity/layout/Header.module.css'
+import { Header as AgHeader } from '@ecossistema-guilda/layout/Header'
+import { LanguageSwitch } from '@ecossistema-guilda/modules/LanguageSwitch'
+import agStyles from '@ecossistema-guilda/layout/Header.module.css'
 
 type TileKey = `${number}-${number}`
 
