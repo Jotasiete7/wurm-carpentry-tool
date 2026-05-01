@@ -1,12 +1,14 @@
 import { Grid3X3, Hammer, Info, Layers, RotateCcw } from 'lucide-react'
 import { useCallback, useState } from 'react'
 import { LanguageProvider, useLanguage } from './i18n/LanguageContext'
-import Header from './components/Header'
+import { Header as AgHeader } from '@antigravity/layout/Header'
+import { LanguageSwitch } from '@antigravity/modules/LanguageSwitch'
+import agStyles from '@antigravity/layout/Header.module.css'
 
 type TileKey = `${number}-${number}`
 
 function CarpentryTool() {
-  const { t } = useLanguage()
+  const { language, setLanguage, t } = useLanguage()
   const [gridSize, setGridSize] = useState(12)
   const [selectedTiles, setSelectedTiles] = useState<Set<TileKey>>(new Set())
   const [floors, setFloors] = useState(1)
@@ -107,21 +109,26 @@ function CarpentryTool() {
       onMouseUp={handleMouseUp}
       onMouseLeave={handleMouseUp}
     >
-      <Header />
+      <AgHeader 
+        currentToolId="carpentry"
+        brandSubName={t('title')}
+        lang={language as 'en' | 'pt'}
+        extraModules={
+          <LanguageSwitch 
+            lang={language} 
+            onLanguageChange={(l) => setLanguage(l)} 
+            languages={[
+              { code: 'en', label: 'EN' },
+              { code: 'pt', label: 'PT' },
+              { code: 'ru', label: 'RU' }
+            ]}
+            styles={agStyles}
+          />
+        }
+      />
 
       <div className="max-w-6xl mx-auto px-4 py-8">
-        {/* Header */}
-        <header className="text-center mb-10">
-          <div className="flex items-center justify-center gap-3 mb-2">
-            <Hammer className="w-10 h-10 text-wurm-accent" />
-            <h1 className="font-serif text-4xl font-bold text-wurm-text">
-              {t('title')}
-            </h1>
-          </div>
-          <p className="text-wurm-muted text-lg">
-            {t('subtitle')}
-          </p>
-        </header>
+        {/* Section Title removed as it's now in the Header */}
 
         <div className="grid lg:grid-cols-[320px_1fr] gap-6">
           {/* Results Panel */}
