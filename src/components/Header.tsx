@@ -1,4 +1,5 @@
 import React from 'react';
+import { Coffee } from 'lucide-react';
 import EcosystemDropdown from './EcosystemDropdown';
 import { LanguageSelector } from './LanguageSelector';
 
